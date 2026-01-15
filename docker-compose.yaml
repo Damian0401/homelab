@@ -1,0 +1,11 @@
+services:
+  grafana:
+    image: grafana/grafana:12.4.0-20977568970-ubuntu
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    env_file:
+      - grafana.env
+    volumes:
+      - ./grafana_data:/var/lib/grafana

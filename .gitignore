@@ -1,0 +1,6 @@
+# Volume files
+*_data/
+
+# Env files
+*.env
+!*.example.env
