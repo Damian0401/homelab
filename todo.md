@@ -1,0 +1,6 @@
+- grafana - done.
+- permissions - done.
+- influxdb - to be tested
+- create buckets
+- telegraf
+- system telemetry
