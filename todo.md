@@ -2,5 +2,6 @@
 - permissions - done.
 - influxdb - done
 - create buckets - done
+- dozzle - done
 - telegraf
 - system telemetry
