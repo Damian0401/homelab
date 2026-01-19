@@ -18,7 +18,9 @@ services:
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_ORG=homelab
+      - DOCKER_INFLUXDB_INIT_BUCKET=internal
     env_file:
       - influxdb.env
     volumes:
       - ./influxdb_data:/var/lib/influxdb2
+      - ./influxdb-init.sh:/docker-entrypoint-initdb.d/influxdb-init.sh
