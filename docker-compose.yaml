@@ -4,9 +4,9 @@ services:
     container_name: grafana
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - '8090:3000'
     env_file:
-      - grafana.env
+      - ./grafana/grafana.env
     volumes:
       - ./grafana_data:/var/lib/grafana
   influxdb:
@@ -14,20 +14,18 @@ services:
     container_name: influxdb
     restart: unless-stopped
     ports:
-      - '8086:8086'
+      - '8091:8086'
     env_file:
-      - influxdb.env
+      - ./influxdb/influxdb.env
     volumes:
       - ./influxdb_data:/var/lib/influxdb2
-      - ./influxdb-init.sh:/docker-entrypoint-initdb.d/influxdb-init.sh:ro
+      - ./influxdb/influxdb-init.sh:/docker-entrypoint-initdb.d/influxdb-init.sh:ro
   dozzle:
     image: amir20/dozzle:v9.0.2
     container_name: dozzle
     restart: unless-stopped
     ports:
-      - '8087:8080'
-    environment:
-      DOZZLE_AUTH_PROVIDER: simple
+      - '8092:8080'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./dozzle_data:/data
@@ -38,8 +36,8 @@ services:
     depends_on:
       - influxdb
     env_file:
-      - influxdb.env
-      - telegraf.env
+      - ./influxdb/influxdb.env
+      - ./telegraf/telegraf.env
     volumes:
-      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /:/hostfs:ro

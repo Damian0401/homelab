@@ -12,10 +12,10 @@ chmod +x influxdb-init.sh
 
 # Dozzle
 mkdir -p ./dozzle_data
-if [ -f ./dozzle.env ]; then
-  export $(grep -v '^#' ./dozzle.env | xargs)
+if [ -f ./dozzle/dozzle.env ]; then
+  export $(grep -v '^#' ./dozzle/dozzle.env | xargs)
 fi
 docker run -it --rm amir20/dozzle:v9.0.2 generate \
     "$DOZZLE_ADMIN_USERNAME" \
     --password "$DOZZLE_ADMIN_PASSWORD" \
-    > ./dozzle_data/users.yml
+    > ./dozzle_data/users.yaml
