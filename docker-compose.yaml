@@ -15,15 +15,11 @@ services:
     restart: unless-stopped
     ports:
       - '8086:8086'
-    environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_ORG=homelab
-      - DOCKER_INFLUXDB_INIT_BUCKET=internal
     env_file:
       - influxdb.env
     volumes:
       - ./influxdb_data:/var/lib/influxdb2
-      - ./influxdb-init.sh:/docker-entrypoint-initdb.d/influxdb-init.sh
+      - ./influxdb-init.sh:/docker-entrypoint-initdb.d/influxdb-init.sh:ro
   dozzle:
     image: amir20/dozzle:v9.0.2
     container_name: dozzle
@@ -35,3 +31,15 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./dozzle_data:/data
+  telegraf:
+    image: telegraf:1.37.1
+    container_name: telegraf
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+    env_file:
+      - influxdb.env
+      - telegraf.env
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /:/hostfs:ro
