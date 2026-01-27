@@ -7,6 +7,7 @@ services:
       - '8090:3000'
     env_file:
       - ./grafana/grafana.env
+      - ./influxdb/influxdb.env
     volumes:
       - ./grafana_data:/var/lib/grafana
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml:ro
@@ -39,8 +40,8 @@ services:
     depends_on:
       - influxdb
     env_file:
-      - ./influxdb/influxdb.env
       - ./telegraf/telegraf.env
+      - ./influxdb/influxdb.env
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /:/hostfs:ro

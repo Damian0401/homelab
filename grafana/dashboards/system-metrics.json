@@ -41,6 +41,9 @@
                   "kind": "PanelQuery",
                   "spec": {
                     "hidden": false,
+                    "datasourceRef": {
+                      "uid": "influxdb-main"
+                    },
                     "query": {
                       "group": "influxdb",
                       "kind": "DataQuery",
@@ -150,6 +153,9 @@
                   "kind": "PanelQuery",
                   "spec": {
                     "hidden": false,
+                    "datasourceRef": {
+                      "uid": "influxdb-main"
+                    },
                     "query": {
                       "group": "influxdb",
                       "kind": "DataQuery",
@@ -263,6 +269,9 @@
                   "kind": "PanelQuery",
                   "spec": {
                     "hidden": false,
+                    "datasourceRef": {
+                      "uid": "influxdb-main"
+                    },
                     "query": {
                       "group": "influxdb",
                       "kind": "DataQuery",
@@ -373,6 +382,9 @@
                   "kind": "PanelQuery",
                   "spec": {
                     "hidden": false,
+                    "datasourceRef": {
+                      "uid": "influxdb-main"
+                    },
                     "query": {
                       "group": "influxdb",
                       "kind": "DataQuery",
