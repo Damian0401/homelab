@@ -45,3 +45,17 @@ services:
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /:/hostfs:ro
+  mosquitto:
+    image: eclipse-mosquitto:2.0.22
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - '8093:1883'
+    env_file:
+      - ./mosquitto/mosquitto.env
+    volumes:
+      - ./mosquitto_data/data:/mosquitto/data
+      - ./mosquitto_data/config:/mosquitto/config
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/mosquitto-init.sh:/entrypoint.sh:ro
+    entrypoint: ["/entrypoint.sh"]
