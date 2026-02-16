@@ -22,5 +22,7 @@ docker run -it --rm amir20/dozzle:v9.0.2 generate \
 
 # Mosquitto
 mkdir -p ./mosquitto_data/data ./mosquitto_data/log ./mosquitto_data/config
+touch ./mosquitto_data/config/passwords
+chmod 600 ./mosquitto_data/config/passwords
 chown -R 1883:1883 ./mosquitto_data
 chmod +x ./mosquitto/mosquitto-init.sh
