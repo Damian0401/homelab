@@ -71,3 +71,12 @@ services:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - ./mosquitto/mosquitto-init.sh:/entrypoint.sh:ro
     entrypoint: ["/entrypoint.sh"]
+  workers:
+    image: damian0401/homelab-workers:1.0.0
+    container_name: workers
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+      - influxdb
+    env_file:
+      - ./workers/workers.env
