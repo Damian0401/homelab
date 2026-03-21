@@ -3,16 +3,28 @@ set -e
 
 echo "Initializing InfluxDB..."
 
-influx bucket create \
-    --name "$DOCKER_INFLUXDB_SYSTEM_METRICS_BUCKET" \
-    --retention 30d \
+if ! influx bucket list \
     --org "$DOCKER_INFLUXDB_INIT_ORG" \
-    --token "$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
+    --host http://influxdb:8086 \
+    --token "$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN" | grep -q "$DOCKER_INFLUXDB_SYSTEM_METRICS_BUCKET"; then
+    influx bucket create \
+        --name "$DOCKER_INFLUXDB_SYSTEM_METRICS_BUCKET" \
+        --retention 30d \
+        --org "$DOCKER_INFLUXDB_INIT_ORG" \
+        --host http://influxdb:8086 \
+        --token "$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
+fi
 
-influx bucket create \
-    --name "$DOCKER_INFLUXDB_SENSORS_BUCKET" \
-    --retention 90d \
+if ! influx bucket list \
     --org "$DOCKER_INFLUXDB_INIT_ORG" \
-    --token "$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
+    --host http://influxdb:8086 \
+    --token "$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN" | grep -q "$DOCKER_INFLUXDB_SENSORS_BUCKET"; then
+    influx bucket create \
+        --name "$DOCKER_INFLUXDB_SENSORS_BUCKET" \
+        --retention 90d \
+        --org "$DOCKER_INFLUXDB_INIT_ORG" \
+        --host http://influxdb:8086 \
+        --token "$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN"
+fi
 
 echo "InfluxDB initialization complete."
