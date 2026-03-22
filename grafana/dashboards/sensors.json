@@ -214,8 +214,8 @@
     "list": []
   },
   "time": {
-    "from": "2026-03-18T22:58:16.092Z",
-    "to": "2026-03-18T23:10:10.365Z"
+    "from": "now-3h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
