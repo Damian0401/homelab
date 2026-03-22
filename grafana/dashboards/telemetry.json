@@ -63,6 +63,8 @@
           },
           "displayName": "${__field.labels.device_id} (${__field.labels.room_id}/${__field.labels.device_type})",
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -156,6 +158,8 @@
           },
           "displayName": "${__field.labels.device_id} (${__field.labels.room_id}/${__field.labels.device_type})",
           "mappings": [],
+          "max": 0,
+          "min": -100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -249,6 +253,8 @@
           },
           "displayName": "${__field.labels.device_id} (${__field.labels.room_id}/${__field.labels.device_type})",
           "mappings": [],
+          "max": 6,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -307,7 +313,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
